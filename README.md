@@ -6,13 +6,13 @@
 
 # Developers: Pet Query Group
 
-| Name          | Email                            | Contribution                             |
-| ------------- | -------------------------------- | ---------------------------------------- |
-| Erwin Medina  | erwinmedina@csu.fullerton.edu    | Slacked                                  |
-| Abel Mendoza  | abel_mendoza10@csu.fullerton.edu | Great person with great github           |
-| Akshat Javiya | akshatjaviya02@csu.fullerton.edu | Great person with a lot of contributions |
+| Name          | Email                            | Contribution                                       |
+| ------------- | -------------------------------- | -------------------------------------------------- |
+| Erwin Medina  | erwinmedina@csu.fullerton.edu    | Caching, DB, Presentation, Main CRUD               |
+| Abel Mendoza  | abel_mendoza10@csu.fullerton.edu | Project set up, Bcrypt, JWT, Redis caching, ReadMe, Presentation |
+| Akshat Javiya | akshatjaviya02@csu.fullerton.edu | Load Balancer, Presentation, Main CRUD             |
 
-<img src="image/README/1715234666089.png" width="350" height="350" alt="Shrunk Image">
+<img src="image/README/1715234666089.png" width="250" height="250" alt="Shrunk Image">
 
 ## Objective
 
@@ -23,6 +23,7 @@ The goal of this project is to develop a scalable and secure backend for a Pet S
 - **User Authentication**: Securely manage user sessions and data access using Flask-JWT-Extended.
 - **Password Encryption**: Utilize Flask-Bcrypt for hashing and verifying passwords to ensure data security.
 - **Data Caching**: Implement Redis caching to reduce database load and improve response times for frequently accessed data.
+- **Load Balancing**: Utilized Nginx to distribute HTTP requests as a load balancer, improving response times.
 - **Error Handling**: Advanced error handling mechanisms for debugging and smoother user experience.
 - **API Development**: RESTful API endpoints for managing pet store inventory and user interactions.
 
@@ -32,6 +33,7 @@ The goal of this project is to develop a scalable and secure backend for a Pet S
 - **Flask**: Web framework for building the API.
 - **MongoDB**: NoSQL database for storing user and product data.
 - **Redis**: In-memory data structure store used as a cache and session store.
+- **Nginx**: Utilized to handle incoming HTTP requests, and distribute them to appropriate servers, serving as a load balancer.
 
 This project is focused on the backend aspect of a Pet Store application. It builds off of the previous assignment, enhancing it by integrating secure authentication, encrypted password storage, and the implementation of advanced scalable strategies to ensure the application can efficiently handle increased loads and maintain high performance.
 
@@ -50,7 +52,7 @@ Before you begin, ensure you have the following installed on your system:
 
 ### Installation
 
-1. **Clone the Repository**
+**1. Clone the Repository**
 
    First, clone the repository to your local machine using Git:
 
@@ -90,7 +92,7 @@ JWT_SECRET_KEY=<your_jwt_secret_key>
 
 ```
 
-Replace `<your_mongo_database_uri>`, `<your_redis_server_url>`, `<your_secret_key>`, and `<your_jwt_secret_key>` with your actual database URIs and secret keys.
+Replace the temp keys with the appropriate key values. 
 
 **5. Run the Application**
 
@@ -101,6 +103,11 @@ flask run
 ```
 
 The server should now be running on `http://127.0.0.1:5000/`.
+
+**6. Questions/Concerns?**
+``` 
+Please contact one of the developers if issues occur 
+```
 
 ### Usage
 
@@ -113,11 +120,23 @@ Here's an example `curl` request to add a new pet to the store:
 ```
 curl -X POST http://localhost:5000/api/petstore \
     -H "Content-Type: application/json" \
-    -d '{"name": "Dog Toy", "description": "A durable rubber toy", "price": 9.99}'
+    -d '{"petname": "Wishbone", "pettype": "dog", "petweight": "20", "petgender": "Male", "petcolor": "White and Brown", "petage": 5}'
 
 ```
 
-This will add a new product to the Pet Store and should return the newly created product's details.
+## Images
+| Request | Output |
+| ------- | ------ |
+| Register (POST) | ![Register](https://i.imgur.com/wSN0rhO.png)
+| Log In (POST) | ![Login](https://i.imgur.com/GXtcjed.png)
+| All Users (GET) | ![All Users](https://i.imgur.com/jmfX2iv.png)
+| All Pets (GET) | ![All Pets](https://i.imgur.com/Syf2DdU.png)
+| All Pets with No Authorization (GET) | ![All Pets with No Authorization](https://i.imgur.com/wO9EIVn.png)
+| All Pets with No Cache (GET) [Look at response time] | ![All Pets with No Cache](https://i.imgur.com/HmpEvSh.png)
+| All Pets with Cache (GET) [Look at response time] | ![All Pets with No Cache](https://i.imgur.com/kdtBrmt.png)
+| User Saved in MongoDB with Password Encryption| ![User Saved in MongoDB](https://i.imgur.com/gnKXcxM.png)
+
+This will add a new pet to the Pet Store and should return the newly created product's details.
 
 ## Acknowledgements
 
